@@ -1,0 +1,32 @@
+/*body{
+  height: 100%;
+  background: 100% -webkit-linear-gradient(top, #001582, white);
+  background: 100% -o-linear-gradient(top, #001582, white);
+  background: 100% -moz-linear-gradient(top, #001582, white);
+  background: 100% linear-gradient(top, #001582, white);
+}*/
+#Player {
+  background-color: #1e1e1e;
+  display: inline-block; }
+
+img {
+  background-color: white; }
+
+#vid-container {
+  width: 640px;
+  height: 360px; }
+  #vid-container video {
+    height: 100%;
+    width: 100%; }
+
+#pbar-container {
+  height: 5px;
+  background-color: white;
+  padding-bottom: 2px;
+  margin-top: 2px; }
+  #pbar-container #pbar {
+    height: 5px;
+    width: 50%;
+    background-color: #001582; }
+
+/*# sourceMappingURL=style.css.css.map */
