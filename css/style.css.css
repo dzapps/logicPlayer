@@ -35,7 +35,7 @@ img:hover {
   margin-top: 2px; }
   #pbar-container #pbar {
     height: 5px;
-    width: 50%;
+    width: 0%;
     background-color: #001582; }
 
 #buttons-container {
