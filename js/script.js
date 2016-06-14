@@ -9,6 +9,8 @@ window.addEventListener('load', function(){
   sbarContainer = document.getElementById('sbar-container');
   sbar = document.getElementById('sbar');
   fullscreenButton = document.getElementById('fullscreen-button');
+  playScreen = document.getElementById('screen');
+  screenButton = document.getElementById('screen-button');
 
 
   video.load();
@@ -19,6 +21,8 @@ window.addEventListener('load', function(){
     soundButton.addEventListener('click', muteOrUnmute, false);
     sbarContainer.addEventListener('click', updateVolume, false);
     fullscreenButton.addEventListener('click', fullscreen, false);
+    screenButton.addEventListener('click', playOnPause, false);
+
   })
 
 }, false);
@@ -28,10 +32,15 @@ function playOnPause(){
     video.play();
     playButton.src = 'imgs/pause.png';
     update = setInterval(updatePlayer, 30);
+
+    playScreen.style.display = 'none';
   } else{
     video.pause();
     playButton.src = 'imgs/play.png'
     window.clearInterval(update);
+
+    playScreen.style.display = 'block';
+    screenButton.src = 'imgs/play.png';
   }
 }
 
@@ -42,6 +51,12 @@ function updatePlayer(){
   if(video.ended){
     window.clearInterval(update);
     playButton.src = 'imgs/replay.png';
+
+    playScreen.style.display = 'block';
+    screenButton.src = 'imgs/replay.png';
+  } else if(video.paused){
+    playButton.src = 'imgs/play.png';
+    screenButton.src = 'imgs/play.png'
   }
 }
 
@@ -102,5 +117,6 @@ function fullscreen(){
     video.mozRequestFullscreen();
   } else if(video.msRequestFullscreen){
     video.msRequestFullscreen();
+
   }
 }
