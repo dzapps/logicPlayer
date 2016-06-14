@@ -5,6 +5,9 @@ window.addEventListener('load', function(){
   pbarContainer = document.getElementById('pbar-container')
   pbar = document.getElementById('pbar');
   timeField = document.getElementById('time-field');
+  soundButton = document.getElementById('sound-button');
+  sbarContainer = document.getElementById('sbar-container');
+  sbar = document.getElementById('sbar');
 
 
   video.load();
@@ -12,6 +15,8 @@ window.addEventListener('load', function(){
     playButton.addEventListener('click', playOnPause, false);
     pbarContainer.addEventListener('click', skip, false);
     updatePlayer();
+    soundButton.addEventListener('click', muteOrUnmute, false);
+    sbarContainer.addEventListener('click', updateVolume, false);
   })
 
 }, false);
@@ -60,4 +65,28 @@ function getFormattedTime(){
   if (totalSeconds.toString().length === 1) totalSeconds = '0' + totalSeconds;
 
   return mintues + ':' + seconds + '/' + totalMintues + ':' + totalSeconds;
+}
+
+function muteOrUnmute(){
+  if(!video.muted){
+    video.muted = true;
+    soundButton.src  = 'imgs/mute.png'
+    sbar.style.display = 'none';
+  } else{
+    video.muted = false;
+    soundButton.src = 'imgs/sound.png'
+    sbar.style.display = 'block';
+  }
+}
+
+function updateVolume(ev){
+  var mouseX = ev.pageX - sbarContainer.offsetLeft;
+  var width = window.getComputedStyle(sbarContainer).getPropertyValue('width');
+  width = parseFloat(width.substr(0, width.length - 2));
+
+  video.volume = (mouseX/width);
+  sbar.style.width = (mouseX/width)*100 + '%';
+  video.muted = false;
+  soundButton.src = 'imgs/sound.png'
+  sbar.style.display = 'block';
 }
